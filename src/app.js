@@ -1,15 +1,22 @@
-const express = require('express');
-const dotenv = require('dotenv');
+import express from 'express';
+import dotenv from 'dotenv';
+import categoryRoute from './route/categoryRoute'
+
 dotenv.config();
 
 const app = express();
-const port = process.env.PORT || 3000; 
+const port = process.env.PORT || 3000;
 app.use(express.json());
 
+app.use('/api/v1/categories',categoryRoute)
+
+
 app.get('/healthcheck', (req, res) => {
-    res.send('ok');
+  res.send('ok');
 });
 
+
+
 app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
+  console.log(`Server is running on port ${port}`);
 });
